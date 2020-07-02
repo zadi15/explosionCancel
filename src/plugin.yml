@@ -1,0 +1,6 @@
+main: zadi15.explosionCancel.Main
+name: explosionCancel
+version: 1.0
+author: https://github.com/zadi15
+description: This plugin cancels explosions
+api-version: 1.16
