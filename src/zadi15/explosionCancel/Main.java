@@ -18,6 +18,7 @@ package zadi15.explosionCancel;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockExplodeEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,14 +31,21 @@ public class Main extends JavaPlugin implements Listener{
 	}
 
 	@EventHandler
-	public void onDeath(BlockExplodeEvent event) throws InterruptedException {
+	public void onBlockBoom(BlockExplodeEvent event) throws InterruptedException {
 		event.setCancelled(true);
 		return;
 	}
 	
 	@EventHandler
-	public void onDeath(EntityExplodeEvent event2) throws InterruptedException {
+	public void onEntityBoom(EntityExplodeEvent event2) throws InterruptedException {
 		event2.setCancelled(true);
 		return;
+	}
+	
+	@EventHandler
+	public void onEnitityDamage(EntityDamageEvent event3) throws InterruptedException {
+		if (event3.getCause().toString().equals("BLOCK_EXPLOSION") || event3.getCause().toString().equals("ENTITY_EXPLOSION")) {
+			event3.setCancelled(true);
+		}
 	}
 }
